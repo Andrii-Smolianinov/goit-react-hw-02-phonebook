@@ -1,10 +1,22 @@
+import PropTypes from 'prop-types';
 export default function ContactsList({ items, removeContact }) {
   const elements = items.map(({ name, number, id }) => {
     return (
-      <li key={id}>
-        {name}:{number} <span onClick={() => removeContact(id)}>Delete</span>
+      <li className="contacts__item" key={id}>
+        {name}: {number}{' '}
+        <button
+          className="contacts__item-del"
+          onClick={() => removeContact(id)}
+        >
+          delete
+        </button>
       </li>
     );
   });
-  return <ul>{elements}</ul>;
+  return <ul className="contacts__list">{elements}</ul>;
 }
+
+ContactsList.propTypes = {
+  key: PropTypes.string,
+  onClick: PropTypes.func,
+};

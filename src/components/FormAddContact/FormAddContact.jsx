@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export default class FormAddContact extends Component {
   state = {
@@ -30,7 +31,10 @@ export default class FormAddContact extends Component {
     const { nameId, numberId, addContact, changeInput } = this;
     return (
       <form onSubmit={addContact}>
-        <div className="inputNameField">
+        <h1>
+          <span className="spanP">P</span>honebook
+        </h1>
+        <div className="contacts__name">
           <label htmlFor={nameId}>Name</label>
           <input
             id={nameId}
@@ -39,12 +43,12 @@ export default class FormAddContact extends Component {
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Назва може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Олег Ляшко, Шарль де Бац д'Артаньян"
+            title="Назва може містити лише літери, апостроф, тире та пробіли. Наприклад Anrian, Marco van Basten, Sharl de d'Artagnan"
             required
           />
         </div>
-        <div className="inputTelField">
-          <label htmlFor={numberId}>number</label>
+        <div className="contacts__number">
+          <label htmlFor={numberId}>Number</label>
           <input
             id={numberId}
             value={this.state.number}
@@ -56,8 +60,14 @@ export default class FormAddContact extends Component {
             required
           />
         </div>
-        <button className="buttonAddContact">Додати контакт</button>
+        <button className="contacts__button">Add contact</button>
       </form>
     );
   }
 }
+
+FormAddContact.propTypes = {
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  id: PropTypes.string,
+};

@@ -4,6 +4,7 @@ import { Component } from 'react';
 import FormAddContact from 'components/FormAddContact/FormAddContact';
 import ContactsList from 'components/ContactsList/ContactsList';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export default class Phonebook extends Component {
   state = {
@@ -73,38 +74,37 @@ export default class Phonebook extends Component {
 
   render() {
     const { addContactInState, filterChange, removeContact } = this;
-    const { filter } = this.state;
-    const contacts = this.getFilteredContacts();
+    const { filter, contacts } = this.state;
+    const addContacts = this.getFilteredContacts();
     return (
       <StylesPhonebook>
-        <div className="form">
+        <div className="contacts">
           <FormAddContact onSubmit={addContactInState} />
-          <ContactsList items={contacts} removeContact={removeContact} />
+          {contacts.length > 0 && (
+            <>
+              <div className="filter">
+                <label className="filter__label" htmlFor="">
+                  Find contacts
+                </label>
+                <input
+                  className="filter__input"
+                  type="text"
+                  name="filter"
+                  onChange={filterChange}
+                  value={filter}
+                />
+              </div>
+              <ContactsList items={addContacts} removeContact={removeContact} />
+            </>
+          )}
         </div>
-
-        <label className="labelFilter" htmlFor="">
-          Contacts filter
-        </label>
-        <input
-          className="inputFilter"
-          type="text"
-          name="filter"
-          onChange={filterChange}
-          value={filter}
-        />
       </StylesPhonebook>
     );
   }
 }
 
-// Phonebook.PropTypes = {
-// //   username: PropTypes.string.isRequired,
-// //   tag: PropTypes.string.isRequired,
-// //   location: PropTypes.string.isRequired,
-// //   avatar: PropTypes.string.isRequired,
-// //   stats: PropTypes.shape({
-// //     followers: PropTypes.number.isRequired,
-// //     views: PropTypes.number.isRequired,
-// //     likes: PropTypes.number.isRequired,
-// //   }),
-// };
+Phonebook.propTypes = {
+  onSubmit: PropTypes.func,
+  removeContact: PropTypes.func,
+  value: PropTypes.string,
+};

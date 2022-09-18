@@ -21,10 +21,7 @@ export default class FormAddContact extends Component {
     event.preventDefault();
     const { name, number } = this.state;
     this.props.onSubmit({ name, number });
-    this.setState({
-      name: '',
-      number: '',
-    });
+    this.setState({ name: '',  number: '', });
   };
 
   render() {

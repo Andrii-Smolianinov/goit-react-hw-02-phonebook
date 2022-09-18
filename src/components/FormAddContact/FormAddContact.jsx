@@ -64,7 +64,6 @@ export default class FormAddContact extends Component {
 }
 
 FormAddContact.propTypes = {
-  onSubmit: PropTypes.func,
-  onChange: PropTypes.func,
-  id: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string,
 };

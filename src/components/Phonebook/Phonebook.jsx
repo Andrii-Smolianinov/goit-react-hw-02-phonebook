@@ -4,7 +4,7 @@ import { Component } from 'react';
 import FormAddContact from 'components/FormAddContact/FormAddContact';
 import ContactsList from 'components/ContactsList/ContactsList';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+
 
 export default class Phonebook extends Component {
   state = {
@@ -103,8 +103,3 @@ export default class Phonebook extends Component {
   }
 }
 
-Phonebook.propTypes = {
-  onSubmit: PropTypes.func,
-  removeContact: PropTypes.func,
-  value: PropTypes.string,
-};

@@ -92,10 +92,5 @@ export const StylesPhonebook = styled.div`
     margin-top: 20px;
     display: inline-flex;
     flex-direction: column;
-  }
-  .filter__label {
-  }
-
-  .filter__input {
-  }
+  }  
 `;
